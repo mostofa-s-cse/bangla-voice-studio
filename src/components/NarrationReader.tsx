@@ -43,10 +43,10 @@ export default function NarrationReader({
     <div id="narration-editor-container" className="space-y-4">
       {/* Preset Badges Bar */}
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-2">
           <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
             <BookOpen className="h-3.5 w-3.5 text-emerald-400" />
-            ঐতিহাসিক ঘটনা ও টেক্সট নির্বাচন
+            প্রিসেট বা নিজের টেক্সট নির্বাচন
           </label>
           <span className="text-[11px] text-slate-500 font-mono">
             {charCount} অক্ষর • {wordCount} শব্দ • আনুমানিক {estMins > 0 ? `${estMins} মি ` : ""}{estSecs} সেকেন্ড

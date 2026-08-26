@@ -210,7 +210,7 @@ export default function CustomVoiceStudio({
   const handleTestPreview = async () => {
     setIsTestingGen(true);
     try {
-      const testText = "আল্লাহ পরম করুণাময় ও অসীম দয়ালু। এই সুন্দর কণ্ঠের মাধ্যমে মনের ভাব প্রকাশ করছি।";
+      const testText = "এই সুন্দর কণ্ঠের মাধ্যমে মনের ভাব স্পষ্ট ও প্রাঞ্জলভাবে প্রকাশ করছি।";
       const res = await fetch("/api/tts/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -400,7 +400,7 @@ export default function CustomVoiceStudio({
 
           {/* Step 1: Voice Sample Reference (Record or Upload) */}
           <div className="space-y-3 p-4 rounded-xl bg-slate-900/70 border border-slate-800">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
               <label className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
                 <Mic className="h-4 w-4 text-teal-400" />
                 ধাপ ১: নিজের ৫-১০ সেকেন্ডের স্পষ্ট কণ্ঠ রেকর্ড বা আপলোড করুন
@@ -490,7 +490,7 @@ export default function CustomVoiceStudio({
 
           {/* Step 2: Voice Tuning Controls */}
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
               <label className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
                 <Sliders className="h-4 w-4 text-emerald-400" />
                 ধাপ ২: সুক্ষ্ম টিউনিং ও বাচনভঙ্গি সমন্বয় (Fine-Tuning)

@@ -485,7 +485,7 @@ export default function VideoVoiceStudio({ currentAudio, narrationText }: VideoV
           <div className="rounded-xl bg-slate-950/80 border border-slate-800 p-4 space-y-4">
             {/* Step 1: Select Bengali Font */}
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-wider text-teal-300 flex items-center justify-between">
+              <label className="text-xs font-bold uppercase tracking-wider text-teal-300 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
                 <span className="flex items-center gap-1.5">
                   <Type className="h-3.5 w-3.5" />
                   বাংলা ফন্ট নির্বাচন (Select Bangla Font)
@@ -632,7 +632,7 @@ export default function VideoVoiceStudio({ currentAudio, narrationText }: VideoV
 
             {/* Step 3: Interactive Subtitle Timings & Editing List */}
             <div className="space-y-2 pt-2 border-t border-slate-800/80">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
                 <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
                   <FileText className="h-3.5 w-3.5 text-teal-400" />
                   সিঙ্ক্রোনাইজড টেক্সট কিউ তালিকা ({cues.length})

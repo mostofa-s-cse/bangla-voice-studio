@@ -10,7 +10,7 @@ import {
   Trash2,
   Sliders,
 } from "lucide-react";
-import { PRIMARY_PROMPT_STORY, VOICE_OPTIONS } from "@/data/presets";
+import { DEFAULT_NARRATION_TEXT, DEFAULT_NARRATION_TITLE, VOICE_OPTIONS } from "@/data/presets";
 import { CustomVoiceProfile, GeneratedAudioItem, StoryPreset, ToneStyle } from "@/types";
 import { base64PcmToWavBlob } from "@/utils/audioHelper";
 import { applyDspEffectsToBlob } from "@/utils/audioEffects";
@@ -25,7 +25,7 @@ const STORAGE_KEY_PROFILES = "bangla_custom_voice_profiles_v1";
 const DEFAULT_CUSTOM_PROFILES: CustomVoiceProfile[] = [
   {
     id: "preset-profile-1",
-    name: "গভীর ইসলামিক বয়ান কণ্ঠ",
+    name: "গভীর ও ভাবগম্ভীর কণ্ঠ",
     baseVoice: "Fenrir",
     gender: "male",
     pitchSemitones: -2,
@@ -33,12 +33,12 @@ const DEFAULT_CUSTOM_PROFILES: CustomVoiceProfile[] = [
     bassBoost: 5,
     reverbAmount: 25,
     warmth: 65,
-    customInstruction: "গভীর, দরাজ ও ভাবগম্ভীর কণ্ঠে আবেগপূর্ণ ও স্পষ্ট শ্রদ্ধাপূর্ণ পাঠ।",
+    customInstruction: "গভীর, দরাজ ও স্পষ্ট কণ্ঠে আবেগপূর্ণ পাঠ।",
     createdAt: 0,
   },
   {
     id: "preset-profile-2",
-    name: "কোমল আধ্যাত্মিক নারী কণ্ঠ",
+    name: "কোমল ও প্রশান্তিদায়ক নারী কণ্ঠ",
     baseVoice: "Kore",
     gender: "female",
     pitchSemitones: 0,
@@ -52,10 +52,8 @@ const DEFAULT_CUSTOM_PROFILES: CustomVoiceProfile[] = [
 ];
 
 export default function Home() {
-  const [text, setText] = useState<string>(PRIMARY_PROMPT_STORY);
-  const [currentTitle, setCurrentTitle] = useState<string>(
-    "উহুদের চেয়েও কঠিন দিন: তায়েফের ক্ষমার অনুপম দৃষ্টান্ত"
-  );
+  const [text, setText] = useState<string>(DEFAULT_NARRATION_TEXT);
+  const [currentTitle, setCurrentTitle] = useState<string>(DEFAULT_NARRATION_TITLE);
   const [selectedVoice, setSelectedVoice] = useState<string>("Kore");
   const [selectedTone, setSelectedTone] = useState<ToneStyle>("reverent");
 
@@ -258,12 +256,8 @@ export default function Home() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-400 leading-relaxed font-normal">
-            হাদিস, ইসলামিক ঐতিহাসিক ঘটনা ও যেকোনো টেক্সট থেকে তৈরি করুন প্রাঞ্জল বাংলা অডিও অথবা আপনার নিজস্ব কাস্টম ভয়েস প্রোফাইল।
+            গল্প, প্রবন্ধ, খবর বা যেকোনো বাংলা টেক্সট থেকে তৈরি করুন প্রাঞ্জল অডিও অথবা আপনার নিজস্ব কাস্টম ভয়েস প্রোফাইল।
           </p>
-
-          <div className="pt-1 text-xs text-emerald-500/80 font-serif tracking-widest">
-            بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
-          </div>
         </header>
 
         {/* Error Alert if any */}
@@ -462,7 +456,7 @@ export default function Home() {
         {/* Footer Note */}
         <footer className="pt-6 border-t border-slate-800/80 text-center text-xs text-slate-500 space-y-1">
           <p>
-            হৃদয়ে মানুষের হেদায়েতের বার্তা পৌঁছে দেওয়ার জন্য বাংলা টেক্সট-টু-স্পিচ ও কাস্টম ভয়েস প্ল্যাটফর্ম।
+            যেকোনো বাংলা লেখাকে প্রাকৃতিক কণ্ঠে রূপান্তরের জন্য টেক্সট-টু-স্পিচ ও কাস্টম ভয়েস প্ল্যাটফর্ম।
           </p>
           <p className="text-[11px] text-slate-600 font-mono">
             Powered by Google Gemini 3.1 Flash TTS Preview

@@ -27,7 +27,7 @@ export default function VoiceSelector({
     {
       id: "reverent",
       titleBn: "শ্রদ্ধাশীল ও গম্ভীর",
-      descBn: "ঐতিহাসিক ও ইসলামিক ঘটনার জন্য উপযুক্ত হৃদয়স্পর্শী সুর",
+      descBn: "গম্ভীর ও ভাবগম্ভীর বিষয়ের জন্য উপযুক্ত হৃদয়স্পর্শী সুর",
       icon: "✨",
     },
     {
@@ -48,7 +48,7 @@ export default function VoiceSelector({
     <div id="voice-tone-selector-container" className="space-y-4">
       {/* Voice Selection */}
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-2">
           <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
             <Mic className="h-3.5 w-3.5 text-emerald-400" />
             বেস ভয়েস নির্বাচন (Gemini TTS Voice)

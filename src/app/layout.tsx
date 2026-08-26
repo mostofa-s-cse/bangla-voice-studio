@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "বাংলা ভয়েস ও অডিও জেনারেটর | Gemini TTS",
   description:
-    "Gemini AI দ্বারা ইসলামিক ঐতিহাসিক ঘটনা ও টেক্সটের বাংলা অডিও ভয়েস জেনারেটর।",
+    "যেকোনো বাংলা টেক্সট থেকে Gemini AI দ্বারা প্রাকৃতিক অডিও ভয়েস তৈরি করুন — কাস্টম ভয়েস ক্লোনিং ও ভিডিও সাবটাইটেল সিঙ্ক সহ।",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -18,7 +18,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#0f172a] text-slate-100 antialiased selection:bg-emerald-500 selection:text-white">
+      <body
+        className="bg-[#0f172a] text-slate-100 antialiased selection:bg-emerald-500 selection:text-white"
+        suppressHydrationWarning
+      >
         {children}
       </body>
     </html>

@@ -6,7 +6,7 @@ Originally a Vite + Express app ([Text-To-Voice-Genarator](https://github.com/mo
 
 ## Features
 
-- Generate Bengali narration audio from Hadith/history text or your own text, with selectable base voices and narration tones (reverent, storyteller, formal)
+- Generate Bengali narration audio from any text — stories, articles, news, or your own writing — with selectable base voices and narration tones (reverent, storyteller, formal)
 - **Voice Cloning & Matching** — record or upload a reference voice sample; client-side pitch/formant analysis (autocorrelation-based F0 detection) plus a Gemini audio analysis pass auto-tunes pitch, bass, and narration style to match
 - **Studio DSP effects** — pitch shift, speed, bass boost, reverb, warmth, applied client-side via the Web Audio API
 - **Video Voice Sync Studio** — upload or pick a sample video, sync the generated voice to playback, auto-generate timed Bangla subtitles, pick from several Bangla fonts, customize subtitle styling, and export an `.srt` file

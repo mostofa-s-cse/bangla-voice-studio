@@ -15,7 +15,7 @@ export const BANGLA_FONT_OPTIONS: BanglaFontOption[] = [
     name: "Hind Siliguri",
     bnName: "হিন্দ শিলিগুড়ি (আধুনিক ও স্পষ্ট)",
     fontFamily: "'Hind Siliguri', sans-serif",
-    sample: "আল্লাহ পরম করুণাময় ও অসীম দয়ালু",
+    sample: "প্রতিদিনের গল্প ও সংবাদের জন্য উপযুক্ত",
     category: "Sans-Serif",
   },
   {
@@ -23,15 +23,15 @@ export const BANGLA_FONT_OPTIONS: BanglaFontOption[] = [
     name: "Anek Bangla",
     bnName: "অনেক বাংলা (বোল্ড ও নজরকাড়া)",
     fontFamily: "'Anek Bangla', sans-serif",
-    sample: "হাদিসের হৃদয়স্পর্শী ঘটনা",
+    sample: "হৃদয়স্পর্শী গল্প ও ঘটনা",
     category: "Display",
   },
   {
     id: "noto-serif-bengali",
     name: "Noto Serif Bengali",
-    bnName: "নোটো সেরিফ (শাস্ত্রীয় ও ইসলামিক ভাব)",
+    bnName: "নোটো সেরিফ (শাস্ত্রীয় ও মার্জিত ভাব)",
     fontFamily: "'Noto Serif Bengali', serif",
-    sample: "রাসূলুল্লাহ (ﷺ) এর ক্ষমার অনুপম আদর্শ",
+    sample: "ক্ষমা ও ধৈর্যের অনুপম আদর্শ",
     category: "Serif",
   },
   {
@@ -39,7 +39,7 @@ export const BANGLA_FONT_OPTIONS: BanglaFontOption[] = [
     name: "Tiro Bangla",
     bnName: "তিরো বাংলা (ঐতিহাসিক বইয়ের ফন্ট)",
     fontFamily: "'Tiro Bangla', serif",
-    sample: "তায়েফের ঐতিহাসিক ময়দান",
+    sample: "ঐতিহাসিক ময়দান ও গল্পের বই",
     category: "Serif",
   },
   {
@@ -55,7 +55,7 @@ export const BANGLA_FONT_OPTIONS: BanglaFontOption[] = [
     name: "Galada",
     bnName: "গালাদা (ক্যালিগ্রাফিক স্টাইল)",
     fontFamily: "'Galada', cursive",
-    sample: "বিসমিল্লাহির রাহমানির রাহিম",
+    sample: "কাব্যিক ও শৈল্পিক উপস্থাপনার জন্য",
     category: "Calligraphy",
   },
 ];
