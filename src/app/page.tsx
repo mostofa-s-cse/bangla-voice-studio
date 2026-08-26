@@ -309,22 +309,20 @@ export default function Home() {
           />
         </section>
 
-        {/* Core Narration & Configuration Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Column: Text Content & Presets (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur-sm shadow-sm">
-              <NarrationReader
-                text={text}
-                onChangeText={setText}
-                onSelectPreset={handleSelectPreset}
-                disabled={isGenerating}
-              />
-            </div>
+        {/* Narration Text & Presets */}
+        <section id="narration-section" aria-label="Narration Text" className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur-sm shadow-sm">
+            <NarrationReader
+              text={text}
+              onChangeText={setText}
+              onSelectPreset={handleSelectPreset}
+              disabled={isGenerating}
+            />
           </div>
+        </section>
 
-          {/* Right Column: Voice Selection, Tone & Generate Action (5 cols) */}
-          <div className="lg:col-span-5 space-y-6">
+        {/* Voice Selection, Tone & Generate Action */}
+        <section id="voice-generation-section" aria-label="Voice Selection and Generation" className="space-y-6">
             <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur-sm shadow-sm space-y-6">
               {/* Active Profile Info Banner */}
               {activeCustomProfile && (
@@ -445,8 +443,7 @@ export default function Home() {
                 </div>
               </div>
             )}
-          </div>
-        </div>
+        </section>
 
         {/* Video Import, Voice Sync & On-Screen Bangla Font Subtitle Studio */}
         <section id="video-sync-studio-section" aria-label="Video Voice Sync and Subtitle Studio">
