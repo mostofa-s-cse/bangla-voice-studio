@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
     const prompt = `${promptInstruction}\n\n${text.trim()}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-tts-preview",
+      model: "gemini-2.5-flash-preview-tts",
       contents: [
         {
           parts: [{ text: prompt }],
@@ -72,6 +72,10 @@ export async function POST(req: NextRequest) {
     const mimeType = audioPart?.mimeType || "audio/pcm;rate=24000";
 
     if (!base64Audio) {
+      console.error(
+        "TTS returned no audio data. Full response:",
+        JSON.stringify(response, null, 2)
+      );
       return NextResponse.json(
         { error: "মডেল থেকে কোনো অডিও ডেটা পাওয়া যায়নি (No audio data returned from Gemini TTS)." },
         { status: 500 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import {
   Sparkles,
   Volume2,
@@ -9,6 +10,7 @@ import {
   History,
   Trash2,
   Sliders,
+  Languages,
 } from "lucide-react";
 import { DEFAULT_NARRATION_TEXT, DEFAULT_NARRATION_TITLE, VOICE_OPTIONS } from "@/data/presets";
 import { CustomVoiceProfile, GeneratedAudioItem, StoryPreset, ToneStyle } from "@/types";
@@ -246,9 +248,20 @@ export default function Home() {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-8">
         {/* Header Branding */}
         <header id="main-header" className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 text-emerald-400 text-xs font-medium shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>Gemini 3.1 Flash TTS + কাস্টম ভয়েস স্টুডিও</span>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-emerald-500/30 text-emerald-400 text-xs font-medium shadow-sm">
+              <Sparkles className="h-3.5 w-3.5" />
+              <span>Gemini 3.1 Flash TTS + কাস্টম ভয়েস স্টুডিও</span>
+            </div>
+
+            <Link
+              id="transcribe-nav-link"
+              href="/transcribe"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-teal-500/30 text-teal-400 text-xs font-medium shadow-sm hover:border-teal-400/60 hover:text-teal-300 transition"
+            >
+              <Languages className="h-3.5 w-3.5" />
+              <span>ভয়েস টু টেক্সট</span>
+            </Link>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
