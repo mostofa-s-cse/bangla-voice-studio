@@ -162,6 +162,16 @@ export default function CustomVoiceStudio({
     }
   };
 
+  // Discard the recorded/uploaded reference sample so the user can try again
+  const handleDeleteRecording = () => {
+    if (recordedAudioUrl) URL.revokeObjectURL(recordedAudioUrl);
+    setRecordedAudioBlob(null);
+    setRecordedAudioUrl(null);
+    setAcousticData(null);
+    setAnalysisNote(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
   // AI Voice Sample Analysis to match characteristics
   const handleAnalyzeVoice = async () => {
     if (!recordedAudioBlob) return;
@@ -471,11 +481,22 @@ export default function CustomVoiceStudio({
 
             {recordedAudioUrl && (
               <div className="p-3 rounded-lg bg-slate-950 border border-slate-800/80 space-y-2">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
                   <span className="text-xs text-slate-400 font-medium">আপনার মূল রেকর্ডকৃত কণ্ঠ:</span>
-                  <span className="text-[11px] text-emerald-400 flex items-center gap-1">
-                    <Check className="h-3 w-3" /> রেফারেন্স সংরক্ষিত
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[11px] text-emerald-400 flex items-center gap-1">
+                      <Check className="h-3 w-3" /> রেফারেন্স সংরক্ষিত
+                    </span>
+                    <button
+                      id="delete-recorded-voice-btn"
+                      type="button"
+                      onClick={handleDeleteRecording}
+                      className="text-[11px] text-red-400 hover:text-red-300 flex items-center gap-1 cursor-pointer"
+                      title="ভালো না হলে মুছে আবার রেকর্ড করুন"
+                    >
+                      <Trash2 className="h-3 w-3" /> মুছে আবার করুন
+                    </button>
+                  </div>
                 </div>
                 <audio src={recordedAudioUrl} controls className="h-8 w-full max-w-md" />
               </div>
