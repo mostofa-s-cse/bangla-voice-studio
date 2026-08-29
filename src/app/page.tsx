@@ -11,6 +11,8 @@ import {
   Trash2,
   Sliders,
   Languages,
+  Type,
+  Check,
 } from "lucide-react";
 import { DEFAULT_NARRATION_TEXT, DEFAULT_NARRATION_TITLE, VOICE_OPTIONS } from "@/data/presets";
 import { CustomVoiceProfile, GeneratedAudioItem, StoryPreset, ToneStyle } from "@/types";
@@ -72,6 +74,13 @@ export default function Home() {
   const [generationStep, setGenerationStep] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Step 1: Bangla/Banglish text input → transcribed to proper Bangla script.
+  // The Custom Voice Studio only appears once this step is confirmed at least once.
+  const [rawInputText, setRawInputText] = useState<string>("");
+  const [isTranscribingText, setIsTranscribingText] = useState(false);
+  const [transcribeError, setTranscribeError] = useState<string | null>(null);
+  const [hasTranscribed, setHasTranscribed] = useState(false);
+
   const [currentAudio, setCurrentAudio] = useState<GeneratedAudioItem | null>(null);
   const [history, setHistory] = useState<GeneratedAudioItem[]>([]);
 
@@ -126,6 +135,41 @@ export default function Home() {
     } else {
       setActiveProfileId(null);
       setSelectedTone("reverent");
+    }
+  };
+
+  // Step 1: Convert Bangla or Banglish (Romanized Bengali) input to proper Bangla script.
+  const handleTranscribeText = async () => {
+    if (!rawInputText.trim()) {
+      setTranscribeError("অনুগ্রহ করে বাংলা অথবা বাংলিশ টেক্সট লিখুন।");
+      return;
+    }
+
+    setIsTranscribingText(true);
+    setTranscribeError(null);
+
+    try {
+      const res = await fetch("/api/text/transliterate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: rawInputText.trim() }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success || !data.banglaText) {
+        throw new Error(data.error || "বাংলায় রূপান্তর করা যায়নি।");
+      }
+
+      setText(data.banglaText);
+      setCurrentTitle(DEFAULT_NARRATION_TITLE);
+      setHasTranscribed(true);
+    } catch (err) {
+      console.error("Transliterate error:", err);
+      setTranscribeError(
+        err instanceof Error ? err.message : "বাংলায় রূপান্তর করতে ব্যর্থ হয়েছে। আবার চেষ্টা করুন।"
+      );
+    } finally {
+      setIsTranscribingText(false);
     }
   };
 
@@ -291,6 +335,71 @@ export default function Home() {
             </button>
           </div>
         )}
+
+        {/* Step 1: Bangla or Banglish text input → transcribed to proper Bangla script */}
+        <section
+          id="text-transcribe-section"
+          aria-label="Bangla or Banglish Text Input"
+          className="rounded-2xl border border-slate-800 bg-slate-900/40 p-5 backdrop-blur-sm shadow-sm space-y-4"
+        >
+          <label className="text-xs font-semibold text-slate-200 flex items-center gap-1.5">
+            <Type className="h-4 w-4 text-emerald-400" />
+            ধাপ ১: বাংলা অথবা বাংলিশ টেক্সট লিখুন
+          </label>
+
+          <textarea
+            id="raw-input-textarea"
+            value={rawInputText}
+            onChange={(e) => {
+              setRawInputText(e.target.value);
+              setHasTranscribed(false);
+            }}
+            placeholder="বাংলা অথবা বাংলিশে লিখুন, যেমন: ami tomake bhalobashi..."
+            rows={4}
+            disabled={isTranscribingText}
+            className="w-full rounded-xl border border-slate-800 bg-slate-950/60 p-4 text-sm md:text-base leading-relaxed text-slate-200 placeholder:text-slate-600 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 resize-none disabled:opacity-60"
+          />
+
+          <button
+            id="transcribe-text-submit-btn"
+            type="button"
+            disabled={isTranscribingText || !rawInputText.trim()}
+            onClick={handleTranscribeText}
+            className="w-full flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl font-semibold text-sm transition-all shadow-lg bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 text-white shadow-emerald-900/40 hover:from-emerald-500 hover:to-teal-400 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+          >
+            {isTranscribingText ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>বাংলায় রূপান্তর হচ্ছে...</span>
+              </>
+            ) : (
+              <>
+                <Languages className="h-4 w-4" />
+                <span>বাংলায় রূপান্তর করুন</span>
+              </>
+            )}
+          </button>
+
+          {transcribeError && (
+            <div className="flex items-start gap-2 p-3 rounded-lg bg-red-950/40 border border-red-500/50 text-red-200 text-xs">
+              <AlertCircle className="h-4 w-4 shrink-0 text-red-400 mt-0.5" />
+              <span>{transcribeError}</span>
+            </div>
+          )}
+
+          {hasTranscribed && (
+            <div
+              id="transcribed-bangla-text"
+              className="rounded-xl border border-emerald-500/30 bg-slate-950/60 p-4 space-y-2"
+            >
+              <span className="text-[11px] font-medium text-emerald-400 flex items-center gap-1.5">
+                <Check className="h-3.5 w-3.5" />
+                বাংলা টেক্সট প্রস্তুত (নিচে জেনারেটরে যোগ হয়েছে)
+              </span>
+              <p className="text-sm md:text-base leading-relaxed text-slate-200 whitespace-pre-wrap">{text}</p>
+            </div>
+          )}
+        </section>
 
         {/* Custom Voice Studio Bar & Creator Modal */}
         <section id="custom-voice-studio-section" aria-label="Custom Voice Studio">
